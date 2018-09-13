@@ -15,6 +15,12 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+private slots:
+    void on_tabWidget_tabBarClicked(int index);
+
+private:
+    void init_HQTblView();
+
 private:
     Ui::MainWindow *ui;
 };

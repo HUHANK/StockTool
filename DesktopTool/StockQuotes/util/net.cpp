@@ -43,7 +43,23 @@ QByteArray HttpClient::get(const char* url) {
     if (!parseUrl(url)) return ret;
     QString header = genHead("GET");
 
-    return TcpSend(m_ip.toStdString().c_str(), m_port, header.toStdString().c_str(), strlen(header.toStdString().c_str()));
+    ret = TcpSend(m_ip.toStdString().c_str(), m_port, header.toStdString().c_str(), strlen(header.toStdString().c_str()));
+
+    char br[3] = {13,10,0};
+    char slen[32] = {0};
+    char* p = strstr(ret.data(), "Conten-Length:");
+    char* p2 = strstr(p, br);
+    if (!p || !p2) {
+        return QByteArray();
+    }
+    strncpy(slen, p+14, p2-p-14);
+    int packLen = atoi(slen);
+    //qDebug(slen);
+    //qDebug("%d", packLen);
+
+    QByteArray d = ret.right(packLen);
+    //qDebug(d.data());
+    return d;
 }
 
 QString HttpClient::genHead(const char* type) {

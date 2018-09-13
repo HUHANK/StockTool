@@ -1,0 +1,63 @@
+#ifndef STOCK_H
+#define STOCK_H
+#include <QString>
+
+
+
+QByteArray getStockIndex();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#endif // STOCK_H
