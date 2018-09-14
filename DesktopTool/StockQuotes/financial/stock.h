@@ -1,10 +1,11 @@
 #ifndef STOCK_H
 #define STOCK_H
 #include <QString>
+#include <QVariant>
+#include <QMap>
 
 
-
-QByteArray getStockIndex();
+QMap<QString, QVariant> getStockIndex();
 
 
 

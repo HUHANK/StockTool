@@ -57,7 +57,7 @@ QByteArray HttpClient::get(const char* url) {
     //qDebug(slen);
     //qDebug("%d", packLen);
 
-    QByteArray d = ret.right(packLen);
+    QByteArray d(ret.right(packLen));
     //qDebug(d.data());
     return d;
 }
