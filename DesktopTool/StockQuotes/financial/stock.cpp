@@ -49,6 +49,7 @@ QMap<QString, QVariant> getStockIndex()
 {
     QString uri = "/get_index";
     QString url = G_PRE_URL + uri;
+    //QString url = "http://hq.sinajs.cn/rn=xppzh&list=sh000001,sh000002,sh000003,sh000008,sh000009,sh000010,sh000011,sh000012,sh000016,sh000017,sh000300,sh000905,sz399001,sz399002,sz399003,sz399004,sz399005,sz399006,sz399008,sz399100,sz399101,sz399106,sz399107,sz399108,sz399333,sz399606";
     HttpClient http;
     QByteArray data = http.get(url.toStdString().c_str());
     qDebug(data.data());
