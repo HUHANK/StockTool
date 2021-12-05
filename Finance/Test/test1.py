@@ -4,12 +4,14 @@
 # @Author : HuYouLiang
 # @File : test1.py
 # @Purpose :
+import os
+import shutil
 
-name = 'ada lovelace'
-print(name.title())
 
-val1=1_000_000_000
-print(val1)
-MAX_INT = 123
-MAX_INT=1
-print(MAX_INT)
+for root, dirs, files in os.walk(r"N:\boost\x64\lib"):
+    for file in files:
+        if (not file.startswith("lib")) and (file.endswith(".lib")):
+            fpath = os.path.join(root, file)
+            fpath2 = os.path.join(root, "lib"+file);
+            shutil.copy(fpath, fpath2);
+            print (fpath2)
