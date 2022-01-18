@@ -8,10 +8,21 @@ import os
 import shutil
 
 
-for root, dirs, files in os.walk(r"N:\boost\x64\lib"):
-    for file in files:
-        if (not file.startswith("lib")) and (file.endswith(".lib")):
-            fpath = os.path.join(root, file)
-            fpath2 = os.path.join(root, "lib"+file);
-            shutil.copy(fpath, fpath2);
-            print (fpath2)
+
+stock_dict = {
+'20220102': '1.987',
+'20220101': '2.345',
+'20220103': '11.234',
+'20220104': '0.234',
+'20220105': '23.123',
+'20220106': '100.00',
+}
+print(stock_dict)
+print(type(stock_dict))
+
+print(min(stock_dict))
+print({price : date for date, price in zip(stock_dict.keys(), stock_dict.values())})
+t = [(price, date) for date, price in zip(stock_dict.keys(), stock_dict.values())]
+print(min(t))
+
+print(sorted(stock_dict.values()))
