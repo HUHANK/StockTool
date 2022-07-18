@@ -15,10 +15,13 @@ from PySide2.QtWidgets import QApplication
 
 from FinancialDataTools.shared.AppConfig import CONFIG
 from FinancialDataTools.ui.MainWindow import MainWindow
+from FinancialDataTools.core.MGlobal import gGlobal
 
 
 def SystemInit() -> bool:
-    pass
+    gGlobal.init()
+
+    return True
 
 
 if __name__ == "__main__":
