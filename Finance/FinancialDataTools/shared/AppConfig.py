@@ -17,6 +17,7 @@ class AppConfig(configparser.ConfigParser):
     def init(self):
         self.DB = {"Host": self.get("MySQL", "Host"), "Database": self.get("MySQL", "Database"),
                    "User": self.get("MySQL", "User"), "Pwd": self.get("MySQL", "Password")}
+        self.DB["Port"] = int(self.get("MySQL", "Port"))
         print(self.DB)
 
 

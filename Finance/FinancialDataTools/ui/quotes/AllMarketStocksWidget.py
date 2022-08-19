@@ -5,10 +5,12 @@
 # @File     : AllMarketStocksWidget.py
 # @Project  : Finance
 
+import PySide2
 from PySide2.QtWidgets import QWidget, QTableView, QHBoxLayout, QHeaderView, QAbstractItemView
 from PySide2.QtGui import  QStandardItemModel, QStandardItem
 from PySide2.QtCore import Qt, Slot, Signal
 from FinancialDataTools.core.MGlobal import gGlobal
+from FinancialDataTools.ui.dialog.KLineDlg import KLineDlg
 
 class AllMarketStocksWidget(QWidget):
     """
@@ -76,3 +78,15 @@ class AllMarketStocksTableView(QTableView):
         items.append(self.Item(row["industryClassification"]))
         self.model.appendRow(items)
 
+    def mousePressEvent(self, event:PySide2.QtGui.QMouseEvent) -> None:
+        super(AllMarketStocksTableView, self).mousePressEvent(event)
+        print("mousePressEvent")
+
+    def mouseDoubleClickEvent(self, event:PySide2.QtGui.QMouseEvent) -> None:
+        super(AllMarketStocksTableView, self).mouseDoubleClickEvent(event)
+        print("mouseDoubleClickEvent")
+        row = self.selectionModel().currentIndex().row()
+        code = self.model.item(row, 0).text()
+        print(code)
+        dlg = KLineDlg(code, self)
+        dlg.exec_()

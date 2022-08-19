@@ -8,10 +8,11 @@
 import pymysql, traceback
 
 class MySQL:
-    def __init__(self, host, db, user, pwd):
+    def __init__(self, host, db, user, pwd, port=3006):
         self.connection = None
         self.cursor = None
         self.Host = host
+        self.Port = port
         self.DB = db
         self.User = user
         self.Pwd = pwd
@@ -30,7 +31,7 @@ class MySQL:
 
         self.connection = pymysql.connect(
             user=self.User, password=self.Pwd,
-            host=self.Host, port=3306,
+            host=self.Host, port=self.Port,
             db=self.DB, charset='utf8'
         )
         if self.connection.open:

@@ -21,9 +21,8 @@ class MySQLService(MQEventLoopThread):
         self.mysql = None
 
     def run(self) -> None:
-        # self.mysql = MySQL(CONFIG.DB["Host"], CONFIG.DB["Database"],
-        #                    CONFIG.DB["User"], CONFIG.DB["Pwd"])
-        self.mysql = MySQL("172.31.114.22", "STK", "root", "123456");
+        self.mysql = MySQL(CONFIG.DB["Host"], CONFIG.DB["Database"],
+                           CONFIG.DB["User"], CONFIG.DB["Pwd"], CONFIG.DB["Port"])
         print("MySQLService started!")
         self.exec_()
 
@@ -34,7 +33,8 @@ class MySQLService(MQEventLoopThread):
             kd.pctChg , kd.peTTM , kd.psTTM , kd.pcfNcfTTM , kd.pbMRQ  \
             FROM stock_basic sb  LEFT JOIN stock_industry si on sb.code = si.code \
             LEFT JOIN k_d_2022 kd on sb.code = kd.code  \
-            WHERE sb.`type` = '1' AND  kd.`date`  = (SELECT max(`date`) from k_d_2022) and kd.adjustflag = '1'"
+            WHERE sb.`type` = '1' AND  kd.`date`  = (SELECT max(`date`) from k_d_2022) and kd.adjustflag = '1'  \
+            LIMIT 0, 10"
         ret = self.mysql.select(sql)
         for row in ret:
             print(row)
